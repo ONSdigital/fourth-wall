@@ -79,10 +79,10 @@
 
           needsRebase = this.model.branchHead.get('object').sha !== this.model.get('base').sha;
           if (needsRebase) {
-            baseSyncHTML = '<div class="base-sync base-sync-rebase">&nbsp</div>';
+            baseSyncHTML = '<div class="base-sync base-sync-rebase">Needs Rebase</div>';
           }
           else {
-            baseSyncHTML = '<div class="base-sync base-sync-ok">&nbsp</div>';
+            baseSyncHTML = '<div class="base-sync base-sync-ok">Up-to-date</div>';
           }
       }
 
@@ -163,7 +163,7 @@
           }
         }
         classes = state;
-        text = ' (' + success_count + '/' + statuses.length + ')';
+        text = state + ' (' + success_count + '/' + statuses.length + ')';
       } else {
         text = 'Unknown';
       }
@@ -195,7 +195,7 @@
                 requestedChanges++;
             }
           }
-          text = '(' + approved + '/' + totalReviews + ')';
+          text = 'Approvals (' + approved + '/' + totalReviews + ')';
       } else {
         text = 'Unknown';
       }
@@ -218,7 +218,7 @@
       var text = '';
       var totalCommits = commits.get('committers')
 
-      text =  '(' + totalCommits + ')';
+      text =  'Commits (' + totalCommits + ')';
 
       if (totalCommits > 1 ){
         classes = 'squash-needed';

@@ -73,16 +73,10 @@ body {
 }
 
 .success {
-  background-image: url('img/success.png');
-  background-repeat: no-repeat;
-  background-position: 15px, center;
   background-color: green;
 }
 
 .failure, .error {
-  background-image: url('img/fail.png');
-  background-repeat: no-repeat;
-  background-position: 10px, center;
   background-color: red;
 }
 
@@ -91,50 +85,27 @@ body {
 }
 
 .pending {
-  background-image: url('img/loading.png');
-  background-repeat: no-repeat;
-  background-position: 15px, center;
   background-color: orange;
 }
 
 .approved {
-  background-image: url('img/approve.png');
-  background-repeat: no-repeat;
-  background-position: 10px, center;
   background-color: green;
-  border-radius: 0px 0px 4px 4px;
 }
 
 .pending-approval {
-  background-image: url('img/approve.png');
-  background-repeat: no-repeat;
-  background-position: 10px, center;
   background-color: orange;
-  border-radius: 0px 0px 4px 4px;
 }
 
 .changes-requested {
-  background-image: url('img/approve.png');
-  background-repeat: no-repeat;
-  background-position: 15px, center;
   background-color: red;
-  border-radius: 0px 0px 4px 4px;
 }
 
 .commit {
-  background-image: url('img/commits.png');
-  background-repeat: no-repeat;
-  background-position: 10px, center;
   background-color: green;
-  border-radius: 0px 0px 4px 4px;
 }
 
 .squash-needed {
-  background-image: url('img/commits.png');
-  background-repeat: no-repeat;
-  background-position: 10px, center;
   background-color: orange;
-  border-radius: 0px 0px 4px 4px;
 }
 
 #pulls {
@@ -215,21 +186,14 @@ body {
 @media (min-width: 580px) {
 
   .base-sync {
-    border-radius: 0px 0px 4px 4px;
     padding: 0.5rem 0.75rem;
   }
 
   .base-sync-ok {
-    background-image: url('img/uptodate.png');
-    background-repeat: no-repeat;
-    background-position: 15px, center;
     background-color: green;
   }
 
   .base-sync-rebase {
-    background-image: url('img/rebase.png');
-    background-repeat: no-repeat;
-    background-position: 15px, center;
     background-color: red;
 
   }
