@@ -41,9 +41,10 @@
 
       var statusFailed = this.model.status.get('failed');
       var statusPending = this.model.status.get('state') === 'pending';
-      var statusMergable = this.model.info.get('mergeable');
+      var statusMergeable = this.model.info.get('mergeable');
       var statusString = this.generateStatusHTML(this.model.info, this.model.status);
       var approvalString = this.generateApprovalHTML(this.model.info, this.model.reviews);
+      var commitString = this.generateCommitHTML(this.model.info, this.model.commits);
 
       var commentCount = 0;
       if (this.model.comment.get('numComments')){
@@ -70,9 +71,7 @@
         }
       }
 
-
       var needsRebase = undefined;
-
       var baseSyncHTML = "";
 
       if (this.model. branchHead.get('object') &&
@@ -80,15 +79,15 @@
 
           needsRebase = this.model.branchHead.get('object').sha !== this.model.get('base').sha;
           if (needsRebase) {
-            baseSyncHTML = '<div class="base-sync base-sync-rebase">Needs Rebase</div>';
+            baseSyncHTML = '<div class="base-sync base-sync-rebase">&nbsp</div>';
           }
           else {
-            baseSyncHTML = '<div class="base-sync base-sync-ok">Up-to-date</div>';
+            baseSyncHTML = '<div class="base-sync base-sync-ok">&nbsp</div>';
           }
       }
 
       if (needsRebase === false && statusFailed === false &&
-          statusPending === false && statusMergable === true) {
+          statusPending === false && statusMergeable === true) {
         this.$el.addClass("ready");
       }
 
@@ -99,11 +98,11 @@
           '<span class="username">',this.model.get('user').login,'</span>',
           '<div class="elapsed-time" data-created-at="', this.model.get('created_at'),'">',
             this.secondsToTime(this.model.get('elapsed_time')),
-            '<p class="repo">' + this.model.get('repo') +'</p>',
             '</div>',
           '</div>',
-        '<div class="status-holder">', statusString , baseSyncHTML, approvalString, '</div>',
+        '<div class="status-holder">', statusString , baseSyncHTML, approvalString, commitString,'</div>',
         '</div>',
+        '<p class="repo">' + this.model.get('repo') +'</p>',
         '<p><a href="', this.model.get('html_url'), '">',
         ' (#',
         this.model.get('number'),
@@ -164,11 +163,11 @@
           }
         }
         classes = state;
-        text = state + ' (' + success_count + '/' + statuses.length + ')';
+        text = ' (' + success_count + '/' + statuses.length + ')';
       } else {
         text = 'Unknown';
       }
-      // if status is success but PR is not mergable, overwrite status...
+      // if status is success but PR is not mergeable, overwrite status...
       if (success && info.get('mergeable') === false){
         classes = 'not-mergeable';
         text = 'Merge Conflicts';
@@ -179,6 +178,7 @@
     generateApprovalHTML: function(info,reviews) {
       var classes = '';
       var text = '';
+
 
       var reviewers = reviews.get('reviewers')
 
@@ -195,21 +195,36 @@
                 requestedChanges++;
             }
           }
-
-          text = 'Approvals (' + approved + '/' + totalReviews + ')';
+          text = '(' + approved + '/' + totalReviews + ')';
       } else {
         text = 'Unknown';
       }
 
       // if status is approved only if the no other statuses are present
-      if (requestedChanges >0){
+      if (requestedChanges > 0){
         classes = 'changes-requested'
       }
-      else if (approved < 2){
+      else if (approved < FourthWall.minimumApprovals){
         classes = 'pending-approval';
       }
       else{
         classes = 'approved';
+      }
+       return '<span class="status ' + classes + '">' + text + '</span>';
+    },
+
+     generateCommitHTML: function(info,commits) {
+      var classes = '';
+      var text = '';
+      var totalCommits = commits.get('committers')
+
+      text =  '(' + totalCommits + ')';
+
+      if (totalCommits > 1 ){
+        classes = 'squash-needed';
+      }
+      else{
+        classes = 'commit';
       }
        return '<span class="status ' + classes + '">' + text + '</span>';
     }

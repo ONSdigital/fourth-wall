@@ -148,4 +148,10 @@
 
   FourthWall.showLabels = FourthWall.getQueryVariable('labels') === 'true';
 
+  FourthWall.minimumApprovals = FourthWall.getQueryVariable('approvals');
+
+  if( typeof FourthWall.minimumApprovals === 'undefined'){
+    FourthWall.minimumApprovals = 2;
+  }
+
 })();

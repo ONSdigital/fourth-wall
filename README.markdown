@@ -34,6 +34,7 @@ Optional query parameters:
  - `interval`: Update interval for monitored repos in seconds (default: 60)
  - `filterusers`: Only show PRs from specific users, if set in config (default: false)
  - `labels`: Show labels attached to each PR (true/false, default:false)
+ - `approvals`: Sets default number of approvals required for a PR to be approved (Integer, default: 2)
 
 The Gist should contain one or more JSON files with this syntax:
 ```json

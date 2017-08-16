@@ -26,6 +26,14 @@
         ref: this.get('head').sha
       });
 
+      this.commits = new FourthWall.Commits({
+        baseUrl: this.collection.baseUrl,
+        userName: this.collection.userName,
+        repo: this.get('repo'),
+        pullId: this.get('number'),
+        ref: this.get('head').sha
+      });
+
       this.issue = new FourthWall.Issue({
         baseUrl: this.collection.baseUrl,
         userName: this.collection.userName,
@@ -47,7 +55,6 @@
         pullId: this.get('number')
       });
 
-
       this.on('change:comments_url', function () {
         this.comment.commentsUrl = this.get('comments_url');
         this.comment.fetch();
@@ -57,6 +64,7 @@
         this.status.set('ref', this.get('head').sha);
         this.info.set('sha', this.get('head').sha);
         this.reviews.set('ref',this.get('head').sha);
+        this.commits.set('ref',this.get('head').sha);
 
       }, this);
 
@@ -76,6 +84,10 @@
         this.trigger('change');
       }, this);
 
+      this.commits.on('change', function () {
+        this.trigger('change');
+      }, this);
+
       this.info.on('change', function () {
         this.trigger('change');
       }, this);
@@ -89,6 +101,7 @@
 
     fetch: function () {
       this.reviews.fetch();
+      this.commits.fetch();
       this.status.fetch();
       this.issue.fetch();
       this.comment.fetch();
