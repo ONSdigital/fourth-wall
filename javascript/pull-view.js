@@ -92,6 +92,7 @@
       }
 
       this.$el.html([
+      '<div class="holder">',
         '<div class="card-header">',
           '<img class="avatar" src="', this.model.get('user').avatar_url, '" />',
           '<div class="card-label">',
@@ -100,7 +101,7 @@
             this.secondsToTime(this.model.get('elapsed_time')),
             '</div>',
           '</div>',
-        '<div class="status-holder">', statusString , baseSyncHTML, approvalString, commitString,'</div>',
+
         '</div>',
         '<p class="repo">' + this.model.get('repo') +'</p>',
         '<p><a href="', this.model.get('html_url'), '">',
@@ -110,6 +111,15 @@
         this.escape(this.model.get('title')),
         '</a></p><p class="review">' + assignee + '</p>',
         labelsHTML,
+        '</div>',
+        '<div class="status-container">',
+                    '<div class="status-inner">',
+                        '<div class="status-holder">', statusString,'</div>',
+                        '<div class="status-holder">', baseSyncHTML,'</div>',
+                        '<div class="status-holder">', approvalString,'</div>',
+                        '<div class="status-holder">', commitString,'</div>',
+                     '</div>',
+                '</div>',
       ].join(''));
     },
 
@@ -220,10 +230,7 @@
 
       text =  'Commits (' + totalCommits + ')';
 
-      if (totalCommits > 1 ){
-        classes = 'squash-needed';
-      }
-      else{
+      if (totalCommits >= 0 ){
         classes = 'commit';
       }
        return '<span class="status ' + classes + '">' + text + '</span>';

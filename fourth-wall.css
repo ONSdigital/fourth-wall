@@ -37,6 +37,10 @@ body {
   text-transform: capitalize;
 }
 
+.holder{
+    padding-bottom: 40px;
+}
+
 .card-header {
   display: flex;
 }
@@ -45,6 +49,21 @@ body {
   display: inline-block;
   vertical-align: middle;
   flex: 1;
+}
+
+.status-container {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.status-inner {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .status-holder {
@@ -101,11 +120,7 @@ body {
 }
 
 .commit {
-  background-color: green;
-}
-
-.squash-needed {
-  background-color: orange;
+  background-color: grey;
 }
 
 #pulls {
@@ -128,6 +143,7 @@ body {
   margin: 1rem;
   flex: 0 0 calc(25% - 2rem);
   background-color: rgb(245, 235, 193)!important;
+  position: relative;
 }
 
 #pulls li.failed {
@@ -156,6 +172,7 @@ body {
 
 #pulls li.unimportant-user.unimportant-repo {
   display: none;
+  bottom: -100px;
 }
 
 #pulls li.ready {
@@ -191,10 +208,12 @@ body {
 
   .base-sync-ok {
     background-color: green;
+    padding: 0.5rem 0.75rem;
   }
 
   .base-sync-rebase {
     background-color: red;
+    padding: 0.5rem 0.75rem;
 
   }
 
@@ -223,7 +242,7 @@ body {
 
   p {
     line-height: 1.1;
-    font-size: 1.1rem;
+    font-size: 2.0rem;
     margin: 1.5rem 0;
     display: block;
     font-weight: 100;
@@ -238,4 +257,9 @@ body {
     margin: 0.2rem 0 -1rem 0;
     font-weight: bold
   }
+
+@media screen and (min-width: 1920px) {
+   body {
+      width:1920px;
+   }
 }
