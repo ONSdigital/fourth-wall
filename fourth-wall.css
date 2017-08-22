@@ -129,7 +129,6 @@ body {
   font-size: 1.5em;
   margin: 0;
   display: flex;
-  flex-direction: row;
   flex-flow: row wrap;
 }
 
@@ -172,7 +171,6 @@ body {
 
 #pulls li.unimportant-user.unimportant-repo {
   display: none;
-  bottom: -100px;
 }
 
 #pulls li.ready {
@@ -240,6 +238,7 @@ body {
   p {
     line-height: 1.1;
     font-size: 2.0rem;
+    margin: 1.5rem 0;
     display: block;
     font-weight: 100;
   }
@@ -250,11 +249,12 @@ body {
 
   p.repo {
     font-size: 1.05rem;
+    margin: 0.2rem 0 -1rem 0;
     font-weight: bold
   }
 
 @media screen and (min-width: 1080px) {
    body {
-      width:1920px;
+      width:1900px;
    }
 }
