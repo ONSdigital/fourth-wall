@@ -74,6 +74,7 @@ body {
   color: #fff;
   font-weight: bold;
   line-height: 1.1;
+  border-right: 1px solid black;
 }
 
 .status-holder span {
@@ -82,12 +83,10 @@ body {
 
 .status {
   padding: 0.5rem 0.75rem;
-  /*border-radius: 4px 4px 0px 0px;*/
-  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
 .base-sync {
-  padding: 0.15rem 0.45rem;
+   padding: 0.5rem 0.75rem;
 }
 
 .success {
@@ -200,7 +199,7 @@ body {
 @media (min-width: 580px) {
 
   .base-sync {
-    padding: 0.53rem 0.75rem;
+    padding: 0.50rem 0.75rem;
   }
 
   .base-sync-ok {
