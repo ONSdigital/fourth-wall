@@ -203,18 +203,15 @@ body {
 @media (min-width: 580px) {
 
   .base-sync {
-    padding: 0.5rem 0.75rem;
+    padding: 0.6rem 0.75rem;
   }
 
   .base-sync-ok {
     background-color: green;
-    padding: 0.5rem 0.75rem;
   }
 
   .base-sync-rebase {
     background-color: red;
-    padding: 0.5rem 0.75rem;
-
   }
 
   .label {
